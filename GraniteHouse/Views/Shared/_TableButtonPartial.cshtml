@@ -1,0 +1,20 @@
+﻿@model int
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@*{The @model at the top is labeled as int because these buttons will be revceiving an id to function, and the id is an integer}*@
+
+<td style="width: 150px">
+    <div class="btn-group" role="group">
+        <a type="button" class="btn btn-primary" href="@Url.Action("Edit/"+Model)">
+            Edit
+        </a>
+        <a type="button" class="btn btn-success" href="@Url.Action("Details/"+Model)">
+            Details
+        </a>
+        <a type="button" class="btn btn-danger" href="@Url.Action("Delete/"+Model)">
+            Delete
+        </a>
+    </div>
+</td>

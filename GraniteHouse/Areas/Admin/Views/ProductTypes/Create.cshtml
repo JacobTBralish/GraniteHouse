@@ -1,0 +1,37 @@
+﻿@model GraniteHouse.Models.ProductTypes
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br />
+<h2 class="text-info">Create Product Type</h2>
+
+@*The asp-action here is unecessary because the method will by default post it to the name of the view. Since the name of the view
+    in this case is create it is okay but if your view is named something different/longer you can redirect the post to the
+    asp-action create by putting this here*@
+<form method="post" asp-action="Create">
+    <div class="p-4 border rounded">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                @*When you use the asp-for key it will automatically find the key "Name" in the ProductTypes Model*@
+                <label asp-for="Name"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Create" />
+            @*We do not have to reference the asp-action because we are within the same area,
+                If we were redirecting to another area we would have to define it. ?(Using asp-area="")?*@
+            <a asp-action="Index" class="btn btn-success">Back to list</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
