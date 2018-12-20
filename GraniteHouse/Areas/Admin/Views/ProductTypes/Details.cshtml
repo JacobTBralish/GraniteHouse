@@ -1,0 +1,28 @@
+﻿@model GraniteHouse.Models.ProductTypes
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br />
+<h2 class="text-info">Product Details</h2>
+@*The asp-action here is unecessary because the method will by default post it to the name of the view. Since the name of the view
+    in this case is create it is okay but if your view is named something different/longer you can redirect the post to the
+    asp-action create by putting this here*@
+    <div class="p-4 border rounded">
+        @*Because the form for the edit will not have the Id we must provide the Id within the context to give it access*@
+        <div class="form-group row">
+            <div class="col-2">
+                @*When you use the asp-for key it will automatically find the key "Name" in the ProductTypes Model*@
+                <label asp-for="Name"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Name" disabled class="form-control" />
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            @*What ever we place after the asp-route is what it will retrieve from the action method*@
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+            <a asp-action="Index" class="btn btn-success">Back to list</a>
+        </div>
+    </div>
