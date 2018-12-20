@@ -11,7 +11,7 @@
     asp-action create by putting this here*@
 <form method="post" asp-action="Edit">
     <div class="p-4 border rounded">
-        @*Because the form for the edit will not have the Id we must provide the Id within the context to give it access*@
+        @*Because the form for the edit will not have the Id when it posts we must provide the Id within the context to give it access*@
         <input type="hidden" asp-for="Id" />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row">

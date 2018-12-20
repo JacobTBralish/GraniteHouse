@@ -16,5 +16,6 @@ namespace GraniteHouse.Data
         
         // This is required before doing the add-migration in PM
         public DbSet<ProductTypes> ProductTypes { get; set; }
+        public DbSet<SpecialTags> SpecialTags { get; set; }
     }
 }
