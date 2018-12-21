@@ -28,6 +28,8 @@ namespace GraniteHouse.Areas.Admin.Controllers
         {
             return View();
         }
+
+        // POST action method
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SpecialTags specialTags)
@@ -40,10 +42,10 @@ namespace GraniteHouse.Areas.Admin.Controllers
             }
             return View(specialTags);
         }
-
+        // GET edit action method
         public async Task<IActionResult> Edit(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -57,6 +59,7 @@ namespace GraniteHouse.Areas.Admin.Controllers
             return View(specialTags);
         }
 
+        // POST edit action method
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, SpecialTags specialTags)
@@ -65,7 +68,7 @@ namespace GraniteHouse.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _db.Update(specialTags);
                 await _db.SaveChangesAsync();
@@ -73,6 +76,52 @@ namespace GraniteHouse.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(specialTags);
+        }
+
+        // GET details action method
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var specialTags = await _db.SpecialTags.FindAsync(id);
+            if (specialTags == null)
+            {
+                return NotFound();
+            }
+
+            return View(specialTags);
+        }
+
+        // GET delete action method
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var specialTags = await _db.SpecialTags.FindAsync(id);
+            if (specialTags == null)
+            {
+                return NotFound();
+            }
+
+            return View(specialTags);
+        }
+
+        // POST delete action method
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var specialTags = await _db.SpecialTags.FindAsync(id);
+            _db.Remove(specialTags);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

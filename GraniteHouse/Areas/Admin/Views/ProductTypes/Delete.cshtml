@@ -22,7 +22,7 @@
         </div>
         <br />
         <div class="form-group">
-            <input type="submit" class="btn btn-danger" value="Delete" asp-route-id="@Model.Id" />
+             <input type="submit" class="btn btn-danger" value="Delete" asp-route-id="@Model.Id" />
             @*We do not have to reference the asp-action because we are within the same area,
                 If we were redirecting to another area we would have to define it. ?(Using asp-area="")?*@
             <a asp-action="Index" class="btn btn-success">Back to list</a>
