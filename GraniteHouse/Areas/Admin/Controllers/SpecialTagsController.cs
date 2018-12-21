@@ -41,6 +41,38 @@ namespace GraniteHouse.Areas.Admin.Controllers
             return View(specialTags);
         }
 
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
 
+            var specialTags = await _db.SpecialTags.FindAsync(id);
+            if (specialTags == null)
+            {
+                return NotFound();
+            }
+
+            return View(specialTags);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, SpecialTags specialTags)
+        {
+            if (id != specialTags.Id)
+            {
+                return NotFound();
+            }
+            if(ModelState.IsValid)
+            {
+                _db.Update(specialTags);
+                await _db.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+            return View(specialTags);
+        }
     }
 }
